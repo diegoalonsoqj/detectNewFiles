@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# @reboot /scriptsDBA/detectNewFiles.sh
+
 MONITOR_DIR="/Documentos"
 LOG_FILE="/var/log/scriptsDBA/detectNewFiles.log"
 
