@@ -3,6 +3,21 @@
 MONITOR_DIR="/Documentos"
 LOG_FILE="/var/log/scriptsDBA/detectNewFiles.log"
 
+# Aplica permisos 777 a todos los archivos ya existentes en el directorio
+for file in "$MONITOR_DIR"/*
+do
+    if [ -f "$file" ]
+    then
+        chmod 777 "$file"
+        if [ $? -eq 0 ]
+        then
+            echo "[$(date '+%Y-%m-%d %H:%M:%S')] - El archivo '$file' se ha modificado con exito a 777 sin vigilancia" >> $LOG_FILE
+        else
+            echo "[$(date '+%Y-%m-%d %H:%M:%S')] - La modificacion de permisos sin vigilancia fallo para el archivo '$file'" >> $LOG_FILE
+        fi
+    fi
+done
+
 # Captura el PID del script
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] - El PID de este script es $$" >> $LOG_FILE
 
